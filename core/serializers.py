@@ -22,7 +22,7 @@ class TopicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Topic
-        fields = ['id', 'topic', 'subject_name']
+        fields = ['id', 'topic','subject', 'subject_name']
 
 class SubjectSerializer(serializers.ModelSerializer):
     topics = TopicSerializer(many=True , read_only=True)
@@ -40,18 +40,16 @@ class TagSerializer(serializers.ModelSerializer):
 class GoalSerializer(serializers.ModelSerializer):
     subject_name = serializers.CharField(source="subject.subject" , read_only=True)
     topic_name = serializers.CharField(source="topic.topic" , read_only=True)
-    tag_name = serializers.CharField(source="tag.tag" , read_only=True)
 
 
     class Meta:
         model = Goal
-        fields = ['id', 'end' , 'minutes' , 'subject' , 'topic' , 'tag' , 'tag_name' , 'subject_name' , 'topic_name' ]
+        fields = ['id', 'end' , 'minutes' , 'subject' , 'topic' , 'subject_name' , 'topic_name' ]
 
 
 
 class UserSerializer(serializers.ModelSerializer):
     subjects = SubjectSerializer(many=True, read_only=True)
-    # topics = TopicSerializer(many=True, read_only=True)
     goals = GoalSerializer(many=True , read_only=True)
     tags = TagSerializer(many=True , read_only=True)
     sessions = SessionSerializer(many=True , read_only=True)

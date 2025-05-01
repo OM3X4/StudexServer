@@ -37,7 +37,7 @@ class Session(models.Model):
 
 
 class Goal(models.Model):
-    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='goals')
     end = models.DateField()
     minutes = models.BigIntegerField()
     subject = models.ForeignKey(Subject , on_delete=models.CASCADE , null=True , blank=True)
