@@ -4,21 +4,17 @@ from rest_framework import status
 from .models import *
 from .serializers import *
 from django.contrib.auth.models import User
+from django.db.models import Prefetch
 
 
 # Create your views here.
 @api_view(["GET"])
 def getUserData(request):
-    user = User.objects.select_related(
-        'subjects',         # Use select_related for ForeignKey relationships
-        'subjects__topic',  # This will load the topic data for each subject
-        'goals',            # Select related goals for the user
-        'tags',             # Select related tags for the user
-        'sessions'          # Select related sessions for the user
-    ).prefetch_related(
-        'subjects__topics', # Still using prefetch for related many-to-many
-        'goals',            # Pre-fetch goals, sessions, tags if needed
-        'sessions'
+    user = User.objects.prefetch_related(
+        Prefetch('sessions' , queryset=Session.objects.select_related('subject' , 'topic' , 'tag')),
+        Prefetch('subjects' , queryset=Subject.objects.prefetch_related('topics')),
+        'tags',
+        Prefetch('goals' , queryset=Goal.objects.select_related('subject' , 'topic')),
     ).first()
     serial = UserSerializer(user)
     return Response(data=serial.data , status=status.HTTP_200_OK)
@@ -58,4 +54,5 @@ def logSession(request):
     if serial.is_valid():
         serial.save(user=user)
         return Response(status=status.HTTP_202_ACCEPTED)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 

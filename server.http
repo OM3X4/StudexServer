@@ -1,1 +1,40 @@
 GET http://127.0.0.1:8000/user/
+
+### post subject
+POST http://127.0.0.1:8000/subject/
+Content-Type: application/json
+
+{
+    "subject": "omar1",
+    "color":"#omar11"
+}
+
+### post Topic
+POST http://127.0.0.1:8000/topic/
+Content-Type: application/json
+
+{
+    "subject": 32,
+    "topic": "green"
+}
+
+
+### post tag
+POST http://127.0.0.1:8000/tag/
+Content-Type: application/json
+
+{
+    "tag": "Morning"
+}
+
+
+### log session
+POST http://127.0.0.1:8000/log/
+Content-Type: application/json
+
+{
+    "duration": "70",
+    "subject": "32",
+    "focus": 4
+}
+

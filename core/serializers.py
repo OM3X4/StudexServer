@@ -12,17 +12,17 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
-        fields = ['id' ,  'subject' , 'subject_name' ,'topic' , 'topic_name' , 'tag' , 'tag_name' , 'focus' , 'start' , 'end']
+        fields = ['id' ,  'subject' , 'subject_name' ,'topic' , 'topic_name' , 'tag' , 'tag_name' , 'focus' , 'duration']
 
 
 
 
 class TopicSerializer(serializers.ModelSerializer):
-    subject_name = serializers.CharField(source='subject.subject', read_only=True)
+    # subject_name = serializers.CharField(source='subject.subject', read_only=True)
 
     class Meta:
         model = Topic
-        fields = ['id', 'topic','subject', 'subject_name']
+        fields = ['id', 'topic']
 
 class SubjectSerializer(serializers.ModelSerializer):
     topics = TopicSerializer(many=True , read_only=True)
@@ -30,7 +30,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subject
-        fields = ['id' , 'subject' , 'topics']
+        fields = ['id' , 'subject' , 'topics' , 'color']
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
