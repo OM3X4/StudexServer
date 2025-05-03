@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Session , Subject , Topic , Tag , Goal
 from django.contrib.auth.models import User
-
+from datetime import date
 
 
 class SessionSerializer(serializers.ModelSerializer):
@@ -54,6 +54,11 @@ class UserSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True , read_only=True)
     sessions = SessionSerializer(many=True , read_only=True)
 
+    studied_today = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'subjects' , 'sessions' , 'goals' ,'tags']
+
+    def get_studied_today(self , obj):
+        return obj.sessions.filter(creation__date=today).count()
