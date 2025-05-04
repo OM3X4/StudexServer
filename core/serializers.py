@@ -14,7 +14,7 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
-        fields = ['id' ,  'subject' , 'subject_name' ,'topic' , 'topic_name' , 'tag' , 'tag_name' , 'focus' , 'duration']
+        fields = ['id' ,  'subject' , 'subject_name' ,'topic' , 'topic_name' , 'tag' , 'tag_name' , 'focus' , 'duration' , 'creation']
 
 class TopicSerializer(serializers.ModelSerializer):
     # subject_name = serializers.CharField(source='subject.subject', read_only=True)
