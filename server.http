@@ -1,4 +1,7 @@
 GET http://127.0.0.1:8000/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ2NjQ0OTg0LCJpYXQiOjE3NDY2NDQ2ODQsImp0aSI6IjdiMjgzMjNiODRjYzQ5ZDdhNWU3OTNmNWEyYzdlNDJiIiwidXNlcl9pZCI6MX0.rEpdc8Tcx5v87kBinxnIlDW0b9XFCMuBNqKzcMTaHkI
+
+
 
 ### post subject
 POST http://127.0.0.1:8000/subject/
@@ -36,5 +39,37 @@ Content-Type: application/json
     "duration": "70",
     "subject": "32",
     "focus": 4
+}
+
+
+### log goal
+POST http://127.0.0.1:8000/goal/
+Content-Type: application/json
+
+{
+    "end": "2024-8-9",
+    "minutes": 400
+}
+
+
+### register
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+{
+    "username": "hi",
+    "password": "hi",
+    "email": "omar@on.com"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json
+
+{
+    "username": "omar",
+    "password": "omar"
 }
 
