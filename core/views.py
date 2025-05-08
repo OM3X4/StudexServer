@@ -21,7 +21,7 @@ def getUserData(request):
         Prefetch('subjects' , queryset=Subject.objects.prefetch_related('topics')),
         'tags',
         Prefetch('goals' , queryset=Goal.objects.select_related('subject' , 'topic')),
-    ).first()
+    ).get(id=request.user.id)
     serial = UserSerializer(user)
     return Response(data=serial.data , status=status.HTTP_200_OK)
 
@@ -63,7 +63,7 @@ def logSession(request):
     serial = SessionSerializer(data=request.data)
     if serial.is_valid():
         serial.save(user=user)
-        return Response(status=status.HTTP_202_ACCEPTED)
+        return Response(status=status.HTTP_201_CREATED)
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["POST"])

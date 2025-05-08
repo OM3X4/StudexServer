@@ -6,10 +6,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ.eyJ0b2tlbl90eXBlIjoiYW
 ### post subject
 POST http://127.0.0.1:8000/subject/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ2NzM5NTE0LCJpYXQiOjE3NDY3MzkyMTQsImp0aSI6IjJiN2IxNDM4YWVmNjRiZTRhZTg5MWIyNDlhYmY2YTVhIiwidXNlcl9pZCI6MX0.MnPdy6C8oFNxiletgX5OEqXZf4RPfOynKG1mB_y4U5k
+
 
 {
-    "subject": "omar1",
-    "color":"#omar11"
+    "subject": "omar1"
 }
 
 ### post Topic
@@ -34,10 +35,12 @@ Content-Type: application/json
 ### log session
 POST http://127.0.0.1:8000/log/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ2NzM3NzIxLCJpYXQiOjE3NDY3Mzc0MjEsImp0aSI6ImIxYTBjYTM5ZDkyYTQzZWFiNDMyNWM5MzZlNjRmZTJmIiwidXNlcl9pZCI6MX0.xbWZ9uvEgVFAGtwRqratFCMzYfJoR59Vw9Z5Garrn-M
+
 
 {
-    "duration": "70",
-    "subject": "32",
+    "duration": "10000",
+    "subject": "31",
     "focus": 4
 }
 
